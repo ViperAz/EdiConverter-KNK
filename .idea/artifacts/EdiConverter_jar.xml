@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="EdiConverter:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/EdiConverter_jar</output-path>
+    <root id="root">
+      <element id="archive" name="EdiConverter.jar">
+        <element id="module-output" name="EdiConverter" />
+      </element>
+      <element id="file-copy" path="$USER_HOME$/Desktop/555/55/sqljdbc_6.2/enu/mssql-jdbc-6.2.2.jre8.jar" />
+    </root>
+  </artifact>
+</component>
