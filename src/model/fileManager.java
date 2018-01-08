@@ -27,7 +27,7 @@ public class fileManager {
         Config config;
              config = getConfig(CONFIG_PATH);
 
-
+        System.out.println("Entering warehouse");
         String connectionUrl = "jdbc:sqlserver://"+config.getUrl().trim()+":"+config.getPort().trim()+";" +
                 "databaseName="+config.getDbName().trim()+";user="+config.getUsername()+";password="+config.getPassword();
 
@@ -38,8 +38,11 @@ public class fileManager {
         String output = "";
         try {
             // Establish the connection.
+            System.out.println("Getting Connection");
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
             con = DriverManager.getConnection(connectionUrl);
+            System.out.println("Connected");
             // Create and execute an SQL statement that returns some data.
             String SQL = "select t_cwar from ttdisa001803 where t_item = '"+PREFIX+item.trim()+"'";
             stmt = con.createStatement();

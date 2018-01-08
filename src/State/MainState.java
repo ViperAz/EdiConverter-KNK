@@ -8,7 +8,7 @@ public class MainState implements State {
     private final int PRICE_PER_UNIT = 37,
                     PACK_SIZE = 43 ,
                     TOTAL_PER_LINE = 44,
-                    ITEM    = 52,
+                    ITEM    = 28,
                     Unit    = 33 ,
                     DESCRIPTION = 55;
     @Override

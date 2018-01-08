@@ -1,0 +1,7 @@
+[Config to Database Server]
+url = ias-ln001.iassistcorp.com
+port = 1433
+id = sa
+password = i@ssist161/412
+db_name = lm_develop
+company = 803

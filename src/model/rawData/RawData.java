@@ -76,4 +76,8 @@ public class RawData {
         return rawOrder.toString();
     }
 
+    public int getTextLineSize(){
+        return this.TextLine.size();
+    }
+
 }

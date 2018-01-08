@@ -7,7 +7,7 @@ public class CreateDataState implements State {
 
     //1st Line 73 , 2nd Line 3 6
     private final int SEND_LOCATION = 75,
-                        ITEM    = 3,
+                        ITEM    = 77,
                         Unit    = 7,
                         TOTAL_PER_LINE = 6;
 
@@ -25,7 +25,7 @@ public class CreateDataState implements State {
         RawAmountLocation amountLocation = new RawAmountLocation();
 
         amountLocation.setSendLocation(textFirstLine[SEND_LOCATION]);
-        amountLocation.setItem(textSecondLine[ITEM]);
+        amountLocation.setItem(textFirstLine[ITEM]);
         amountLocation.setTotalPerLine(textSecondLine[TOTAL_PER_LINE]);
         amountLocation.setUnit(textSecondLine[Unit]);
 
