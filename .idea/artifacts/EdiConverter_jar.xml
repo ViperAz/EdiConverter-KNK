@@ -5,7 +5,7 @@
       <element id="archive" name="EdiConverter.jar">
         <element id="module-output" name="EdiConverter" />
       </element>
-      <element id="file-copy" path="$USER_HOME$/Desktop/555/55/sqljdbc_6.2/enu/mssql-jdbc-6.2.2.jre8.jar" />
+      <element id="library" level="project" name="mssql-jdbc-6.2.2.jre8" />
     </root>
   </artifact>
 </component>

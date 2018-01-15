@@ -57,6 +57,7 @@ public class fileManager {
         // Handle any errors that may have occurred.
         catch (Exception e) {
             e.printStackTrace();
+
         }
         finally {
             if (rs != null) try { rs.close(); } catch(Exception e) {}
