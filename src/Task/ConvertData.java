@@ -269,7 +269,7 @@ public class ConvertData extends Task {
                 for (RawItem j : rawItem){
                     if(j.getItem().trim().equals(i.getItem().trim())){
                         sa5.setSizePerPack(j.getPackSize());
-                        sa5.setPrice(j.getPricePerUnit());
+                        //sa5.setPrice(j.getPricePerUnit());
                     }
                 }
                 order.addSa5(sa5);
@@ -289,7 +289,7 @@ public class ConvertData extends Task {
                 sa5.setStepSize(String.valueOf(step));
                 sa5.setSizePerPack(i.getPackSize());
                 sa5.setShipDate(shipDate);
-                sa5.setPrice(i.getPricePerUnit());
+                //sa5.setPrice(i.getPricePerUnit());
                 sa5.setWareHouse(fileManager.getWareHouse(i.getItem().trim()));
                 order.addSa5(sa5);
                 step+=10;
