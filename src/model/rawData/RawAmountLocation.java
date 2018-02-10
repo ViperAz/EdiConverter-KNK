@@ -14,11 +14,7 @@ public class RawAmountLocation {
 
     }
 
-    public RawAmountLocation(String sendLocation, String item, String totalPerLine) {
-        this.sendLocation = sendLocation;
-        this.item = item;
-        this.totalPerLine = totalPerLine;
-    }
+
 
     public String getSendLocation() {
         return sendLocation;

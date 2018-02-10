@@ -21,9 +21,6 @@ public class RawData {
         state = null;
     }
 
-    public void createRawOrder(RawOrder rawOrder){
-        this.rawOrder = rawOrder;
-    }
 
     public RawOrder getRawOrder() {
         return rawOrder;

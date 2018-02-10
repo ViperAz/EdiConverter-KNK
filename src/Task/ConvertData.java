@@ -1,8 +1,10 @@
 package Task;
 
+import dao.WarehouseDao;
 import javafx.concurrent.Task;
+import Controller.DatabaseManager;
 import model.Run;
-import model.fileManager;
+import Controller.fileManager;
 import model.finalData.Order;
 import model.finalData.SA1;
 import model.finalData.SA2;
@@ -16,6 +18,7 @@ import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -47,15 +50,20 @@ public class ConvertData extends Task {
     private EntryState entryState;
     private fileManager fileManager;
 
+    private DatabaseManager databaseManager;
+    private WarehouseDao warehouseDao;
+
     private String DATA_SEPARATOR = "\\|";
 
 
-    public ConvertData(File fileToConvert,int step){
+    public ConvertData(File fileToConvert,int step) throws IOException {
         this.orders = new ArrayList<>();
         this.fileToConvert = fileToConvert;
         this.step = step;
         this.fileManager  = new fileManager();
+        this.databaseManager = new DatabaseManager();
         this.curDateRef = "000000000000000000000000000";
+        this.warehouseDao = new WarehouseDao(this.databaseManager);
         entryState = new EntryState();
         mainState = new MainState();
         createState = new CreateDataState();
@@ -64,7 +72,8 @@ public class ConvertData extends Task {
     }
     @Override
     protected Object call() throws Exception {
-
+//        this.databaseManager.closeConnection();
+        this.databaseManager.openConnection();
         this.updateMessage("Start Converting");
 
         ArrayList<String> textList ;
@@ -185,6 +194,7 @@ public class ConvertData extends Task {
 //            setProgressView(false);
         }
 //        setProgressView(false);
+        this.databaseManager.closeConnection();
         return null;
     }
 
@@ -209,8 +219,8 @@ public class ConvertData extends Task {
         //27
         this.run.increaseRun();
         RawHeader rawHeader =  rawData.getRawOrder().getHeader();
-        ArrayList<RawItem> rawItem = rawData.getRawOrder().getRawItem();
-        ArrayList<RawAmountLocation> rawAmountLocations = rawData.getRawOrder().getRawAmLocation();
+        ArrayList<RawItem> rawItem = rawData.getRawOrder().getRawItems();
+        ArrayList<RawAmountLocation> rawAmountLocations = rawData.getRawOrder().getRawAmLocations();
 
         int delRange = String.valueOf(this.run.getRun()).length();
 
@@ -265,7 +275,11 @@ public class ConvertData extends Task {
                 sa5.setSendLocation(i.getSendLocation().substring(0,5));
                 sa5.setStepSize(String.valueOf(step));
                 sa5.setShipDate(shipDate);
-                sa5.setWareHouse(fileManager.getWareHouse(i.getItem().trim()));
+                try {
+                    sa5.setWareHouse(this.warehouseDao.getWarehouse(i.getItem().trim()).getWarehouse());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 for (RawItem j : rawItem){
                     if(j.getItem().trim().equals(i.getItem().trim())){
                         sa5.setSizePerPack(j.getPackSize());
@@ -290,7 +304,11 @@ public class ConvertData extends Task {
                 sa5.setSizePerPack(i.getPackSize());
                 sa5.setShipDate(shipDate);
                 //sa5.setPrice(i.getPricePerUnit());
-                sa5.setWareHouse(fileManager.getWareHouse(i.getItem().trim()));
+                try {
+                    sa5.setWareHouse(this.warehouseDao.getWarehouse(i.getItem().trim()).getWarehouse());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 order.addSa5(sa5);
                 step+=10;
             }

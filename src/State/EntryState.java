@@ -24,7 +24,7 @@ public class EntryState implements State {
 
         text = rawData.getCurLineText().split(this.DELIMITER);
 
-        rawData.createRawOrder(new RawOrder());
+        rawData.setRawOrder(new RawOrder());
         //Just Keep Raw data in Order no need to process it here
         rawData.getRawOrder().getHeader().setFlowType(text[FLOW_INDEX]);
         rawData.getRawOrder().getHeader().setPowNo(text[POWNO_INDEX]);

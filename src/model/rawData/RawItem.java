@@ -16,12 +16,6 @@ public class RawItem {
 
     }
 
-    public RawItem(String pricePerUnit, String packSize, String description) {
-        this.pricePerUnit = pricePerUnit;
-        this.packSize = packSize;
-        this.description = description;
-    }
-
     public String getPricePerUnit() {
         return pricePerUnit;
     }
